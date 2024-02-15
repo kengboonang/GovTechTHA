@@ -7,7 +7,9 @@ Contents:
 [TBA]
 
 How to Use:
-[TBA]
+1. Navigate to source and install requirements/compile yaml file.
+2. Launch FastAPI using ```python -m uvicorn main:app --reload```
+3. Documentation can be accessed at http://127.0.0.1:8000/docs . 
 
 Requirements:
 
