@@ -18,7 +18,7 @@ def check_openai_api_key(api_key):
 #     def __init__(self, api_key):
 #         openai.api_key = api_key
 
-if name == "__main__":
+if __name__ == "__main__":
     api_key = os.getenv("OPENAI_KEY")
     is_valid = check_openai_api_key(api_key)
 

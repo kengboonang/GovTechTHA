@@ -1,4 +1,5 @@
 beanie
+dotenv
 fastapi
 openai
 pydantic
