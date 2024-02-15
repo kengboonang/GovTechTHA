@@ -1,0 +1,5 @@
+beanie
+fastapi
+openai
+pydantic
+uvicorn[standard]
