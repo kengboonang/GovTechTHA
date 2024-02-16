@@ -1,8 +1,12 @@
+from chatgpt import ChatGPT
 from enum import Enum
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response, status
 from pydantic import BaseModel, Field, ValidationError, UUID4
 from typing import Dict, Optional, Union, List
 
+import uuid
+
+app = FastAPI()
 # Schemas
 class request(BaseModel):
     """
@@ -76,9 +80,29 @@ class ConversationPUT(BaseModel):
 def read_error(APIError: APIError):
     return APIError
 
-@app.get("/chat")
-def read_chat(messages: List[Prompt]):
-    return messages
+@app.post("/queries/{id}", tags=["LLM Queries"], status_code=201, summary="Create a new Prompt query to the LLM.", description="This action sends a new Prompt query to the LLM and returns its response. If any errors occur when sending the prompt to the LLM, then a 422 error should be raised.")
+def create_query(id: int, prompt: Optional[Prompt] = None):
+    chat = ChatGPT()
+    unique_id = uuid.uuid4()
+    response = chat.generate(prompt.role, prompt.content)
+    return {"id": unique_id}
+
+# Define error handlers
+@app.exception_handler(status.HTTP_400_BAD_REQUEST)
+async def invalid_parameters_error_handler(request, exc):
+    return Response(code=400, content="Invalid parameters", status_code=status.HTTP_400_BAD_REQUEST)
+
+@app.exception_handler(status.HTTP_404_NOT_FOUND)
+async def not_found_error_handler(request, exc):
+    return Response(content="Resource not found", status_code=status.HTTP_404_NOT_FOUND)
+
+@app.exception_handler(status.HTTP_422_UNPROCESSABLE_ENTITY)
+async def invalid_creation_error_handler(request, exc):
+    return Response(content="Invalid creation", status_code=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+@app.exception_handler(status.HTTP_500_INTERNAL_SERVER_ERROR)
+async def internal_server_error_handler(request, exc):
+    return Response(content="Internal server error", status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @app.post("/conversation")
 def create_conversation(conversation: Conversation):
