@@ -1,7 +1,12 @@
 beanie
 dotenv
+enum
+dotenv
 fastapi
 openai
 pydantic
 requests
+streamlit
+typing
+uuid
 uvicorn[standard]

@@ -13,15 +13,17 @@ class ChatGPT(object):
         self.client = openai.OpenAI(api_key=os.getenv("OPENAI_KEY"))
         self.num_tries = num_tries
 
-    def generate(self, role, prompt):
+    def generate(self, role, prompt, history=None):
         is_done = False
         num_tries = self.num_tries
         response_str = "Error"
         while not is_done and num_tries > 0:
             try:
+                if history:
+                    updated_history = history + [{"role": role, "content": prompt}]
                 response = self.client.chat.completions.create(
                     model="gpt-3.5-turbo",
-                    messages=[{"role": role, "content": prompt}],
+                    messages=updated_history if history else [{"role": role, "content": prompt}],
                     max_tokens=150,
                     temperature=1.0,
                 )
