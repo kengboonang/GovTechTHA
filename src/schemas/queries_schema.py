@@ -10,10 +10,10 @@ class Role(Enum):
     \nassistant = Message is a reply from the LLM model 
     \nfunction = Message is a function call message
     """
-    system = 1
-    user = 2
-    assistant = 3
-    function = 4
+    system = "system"
+    user = "user"
+    assistant = "assistant"
+    function = "function"
 
 class Prompt(BaseModel):
     """

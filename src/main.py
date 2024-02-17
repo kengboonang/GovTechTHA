@@ -1,20 +1,18 @@
 # Description: This file contains the FastAPI implementation.
-from enum import Enum
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field, ValidationError, UUID4
-from typing import Dict, Optional, Union, List
+from fastapi import APIRouter, FastAPI, Response, status
 import uvicorn
 
+from routers import queries_router
+
+api_router = APIRouter()
 app = FastAPI()
 
 # Testing Code to check FastAPI implementation
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@api_router.get("/")
+def get_root():
+    return {"message": "Hello World!"}
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+app.include_router(queries_router.router)
 
 if __name__ == "__main__":
     app_module = "main:app"
