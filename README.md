@@ -1,11 +1,16 @@
 # GovTechTHA
 
 Description:
-Welcome to my repository for the GovTech Take-Home Assignment! This repository contains the code and process taken to cover the items in the later section. I apologise in advance for not using conventional frameworks and libraries for the frontend or not following conventional rules for the backend because my experience is with Data Science projects and not with those libraries. As I would still like to show what I've learnt and tried, I am using Streamlit instead as I usually do to quickly build and deploy PoCs for my projects. As for the backend, I have and will try my best to read up and try to employ the frameworks and libraries to the best of my abilities.
+Welcome to my repository for the GovTech Take-Home Assignment! This repository contains the code and process taken to cover the items in the later section. I apologise in advance for not using conventional frameworks and libraries for the frontend or not following conventional rules for the backend because my experience mainly lies with Data Science projects and fullstack ones. As I would still like to show what I've learnt and tried within the given period, I will be using Streamlit instead as I usually do to quickly build and deploy PoCs for my projects. As for the backend, I have and will try my best to read up and try to employ the frameworks and libraries to the best of my abilities. 
 
 Contents:
 - OpenAI API to interact with gpt-3.5-turbo
 - Streamlit web application to converse with the LLM
+
+To Be Added:
+- database implementation for backend to connect to
+- replace pseudocode for backend code
+- adding functionality to allow users to use their own API Key
 
 How to Use:
 1. Navigate to "src" and install requirements using "pip install -r requirements.txt"

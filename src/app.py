@@ -13,10 +13,11 @@ st.divider()
 st.markdown("<h3 style='text-align: center; color: white;'>This Chatbot aims to help someone complete their take-home assignment because they have not enough frontend knowledge...</h3>", unsafe_allow_html=True)
 st.divider()
 
+# creating session states to store the chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
-if "api_key" not in st.session_state:
-    st.session_state.api_key = ""
+# if "api_key" not in st.session_state:
+#     st.session_state.api_key = ""
 
 # Setting up the sidebar
 st.sidebar.title("LLM Chatbot")
