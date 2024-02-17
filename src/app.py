@@ -15,17 +15,31 @@ st.divider()
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
+if "api_key" not in st.session_state:
+    st.session_state.api_key = ""
 
 # Setting up the sidebar
 st.sidebar.title("LLM Chatbot")
 counter_placeholder = st.sidebar.empty()
 with st.sidebar:
-    st.markdown("<h3 style='text-align: center; color: white;'>This sidebar exists solely to house this button and hide it if the user doesn't wish to accidentally press the reset button.</h3>", unsafe_allow_html=True)
+    # st.markdown("<h3 style='text-align: center; color: white;'>Enter your api-key here if you are not using an environment variable to run the app.</h3>", unsafe_allow_html=True)
+    # user_api_key = st.text_input("API Key", value=st.session_state.api_key)
+    # use_key = st.button("Load API Key")
+    # clear_key = st.button("Clear API Key")
+    st.markdown("<h3 style='text-align: center; color: white;'>Clear chat history here</h3>", unsafe_allow_html=True)
     clear_button = st.button("Clear history")
 
+# Managing user's api key
+# if use_key:
+#     st.session_state.api_key = user_api_key
+#     chat.change_keys(api_key=st.session_state.api_key)
+# if clear_key:
+#     st.session_state.api_key = ""
+#     chat = ChatGPT()
+
+# Clearing history
 if clear_button:
     st.session_state.messages = []
-    st.session_state.history = []
     counter_placeholder.empty()
 
 # Main chat interface

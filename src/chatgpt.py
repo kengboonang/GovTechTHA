@@ -1,8 +1,6 @@
 # Description: This file contains the ChatGPT class which is used to interact with the OpenAI GPT-3.5 API.
-import json
 import openai
 import os
-import requests
 from time import sleep
 from dotenv import load_dotenv
 
@@ -10,9 +8,16 @@ load_dotenv()
 
 class ChatGPT(object):
     def __init__(self, num_tries=1):
-        self.client = openai.OpenAI(api_key=os.getenv("OPENAI_KEY"))
+        self.key = os.getenv("OPENAI_KEY")
+        self.client = openai.OpenAI(api_key=self.key)
         self.num_tries = num_tries
 
+    # change keys
+    def change_keys(self, api_key):
+        self.key = api_key
+        self.client = openai.OpenAI(api_key=self.key)
+        
+    # generate a response from the LLM
     def generate(self, role, prompt, history=None):
         is_done = False
         num_tries = self.num_tries
@@ -39,4 +44,5 @@ class ChatGPT(object):
 
 if __name__ == "__main__":
     chat = ChatGPT()
-    print(chat.generate("What is the meaning of life?"))
+    # chat.change_keys(api_key="sk-1234")
+    print(chat.generate("user", "What is the meaning of life?"))
