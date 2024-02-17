@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException , Response, status
 from pydantic import BaseModel, validator
 from typing import Optional
-import uuid
 
 from schemas.queries_schema import Prompt, Role
 from chatgpt import ChatGPT
