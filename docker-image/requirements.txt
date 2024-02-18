@@ -1,0 +1,10 @@
+beanie
+fastapi
+openai
+pydantic
+python-dotenv
+requests
+streamlit
+typing
+uuid
+uvicorn[standard]
