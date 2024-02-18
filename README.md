@@ -12,12 +12,23 @@ To Be Added:
 - replace pseudocode for backend code
 - adding functionality to allow users to use their own API Key
 
-How to Use:
-1. Navigate to "src" and install requirements using "pip install -r requirements.txt"
-2. To load documentation, launch FastAPI using ```python -m uvicorn main:app --reload```
-3. Documentation can be accessed at http://127.0.0.1:8000/docs . 
-4. To load chat interface, launch Streamlit using ```python -m streamlit run app.py```
-5. Web interface should automatically load.
+How to Use (Without Docker):
+1. Pull from repo.
+2. Navigate to "src" and install requirements using "pip install -r requirements.txt"
+3. To load documentation, launch FastAPI using ```python -m uvicorn main:app --reload```
+4. Documentation can be accessed at http://127.0.0.1:8000/docs . 
+5. To load chat interface, launch Streamlit using ```python -m streamlit run app.py```
+6. Web interface should automatically load.
+
+How to View (Using Docker):
+1. Pull from repo.
+2. Create your own .env file and add it to the "src" folder, setting your API Key in the following format:
+
+"OPENAI_KEY = {API_KEY}"
+
+3. Run "docker build -t {image_name}:{version}"
+4. Run "docker run -d -p {port}:8501 --name {webserver_name} {image_name}:{version}"
+5. Visit the webpage at "http://localhost:9090/" in your browser
 
 Requirements:
 
